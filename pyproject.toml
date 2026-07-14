@@ -9,7 +9,7 @@ description = "Redact secrets from terminal recordings and ANSI logs — rules p
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "JaydenCJ" }]
+authors = [{ name = "JaydenCJ", email = "aisingioro.kiyon@gmail.com" }]
 keywords = ["redaction", "secrets", "asciinema", "ansi", "terminal", "security", "logs", "cli"]
 classifiers = [
     "Development Status :: 3 - Alpha",
