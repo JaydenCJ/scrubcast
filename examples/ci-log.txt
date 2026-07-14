@@ -1,0 +1,8 @@
+[32m✓[0m install (2.1s)
+[32m✓[0m build (11.4s)
+[31m✗[0m deploy (0.3s)
+[90m  $ ./deploy.sh --env production[0m
+  [31mError:[0m upload failed: 401 Unauthorized
+  request used key: [1mAKIAIOSFODNN7EXAMPLE[0m
+  retry with SLACK_WEBHOOK=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+  session token 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b

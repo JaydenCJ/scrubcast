@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="580" viewBox="0 0 920 580" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14">
+  <!-- Terminal transcript of a real run of `scrubcast scrub examples/demo.cast`
+       followed by `scrubcast scan examples/ci-log.txt`. Text content is copied
+       verbatim from an actual execution against the files in examples/. -->
+  <rect width="920" height="580" rx="10" fill="#0d1117"/>
+  <rect width="920" height="34" rx="10" fill="#161b22"/>
+  <rect y="20" width="920" height="14" fill="#161b22"/>
+  <circle cx="22" cy="17" r="6" fill="#ff5f57"/>
+  <circle cx="42" cy="17" r="6" fill="#febc2e"/>
+  <circle cx="62" cy="17" r="6" fill="#28c840"/>
+  <text x="460" y="22" fill="#8b949e" text-anchor="middle" font-size="12">scrubcast — redact secrets, keep recordings playable</text>
+  <g fill="#c9d1d9">
+    <text x="24" y="62"><tspan fill="#7ee787">$</tspan> scrubcast scrub examples/demo.cast -o clean.cast</text>
+    <text x="24" y="86">examples/demo.cast: <tspan fill="#f85149">4 secrets found</tspan> (cast)</text>
+    <text x="24" y="110">  github-token             event 1 (t=1.200s, stream 'o')       ghp_… (40 chars)</text>
+    <text x="24" y="134">  jwt                      event 4 (t=3.150s, stream 'o')       eyJh… (77 chars)</text>
+    <text x="24" y="158">  aws-secret-access-key    event 8 (t=5.000s, stream 'o')       wJal… (40 chars)</text>
+    <text x="24" y="182">  aws-access-key-id        event 9 (t=5.200s, stream 'o')       AKIA… (20 chars)</text>
+    <text x="24" y="222"><tspan fill="#7ee787">$</tspan> sed -n '6,7p;11p' clean.cast   <tspan fill="#8b949e"># the split JWT, and escapes untouched</tspan></text>
+    <text x="24" y="246">[3.15, "o", "<tspan fill="#d29922">[REDACTED:jwt]</tspan>"]</text>
+    <text x="24" y="270">[3.22, "o", ""]   <tspan fill="#8b949e"># follow-on event kept (empty): timing unchanged</tspan></text>
+    <text x="24" y="294">[5.2, "o", "aws s3 sync ./dist s3://demo-bucket \u001b[1m<tspan fill="#d29922">[REDACTED:aws-access-key-id]</tspan>\u001b[0m\r\n"]</text>
+    <text x="24" y="334"><tspan fill="#7ee787">$</tspan> scrubcast scan examples/ci-log.txt      <tspan fill="#8b949e"># CI gate: exit 1 on leaks</tspan></text>
+    <text x="24" y="358">examples/ci-log.txt: <tspan fill="#f85149">3 secrets found</tspan> (log)</text>
+    <text x="24" y="382">  aws-access-key-id        line 6, col 25                       AKIA… (20 chars)</text>
+    <text x="24" y="406">  slack-webhook            line 7, col 28                       http… (77 chars)</text>
+    <text x="24" y="430">  entropy                  line 8, col 17                       9f86… (40 chars)</text>
+    <text x="24" y="454"><tspan fill="#7ee787">$</tspan> echo $?</text>
+    <text x="24" y="478" fill="#f85149">1</text>
+    <text x="24" y="518"><tspan fill="#7ee787">$</tspan> scrubcast scrub examples/ci-log.txt --style mask -q | sed -n 6p</text>
+    <text x="24" y="542">  request used key: <tspan fill="#8b949e">********************</tspan>  <tspan fill="#8b949e"># bold SGR pair kept, length kept</tspan></text>
+  </g>
+</svg>

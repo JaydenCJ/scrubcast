@@ -1,0 +1,15 @@
+{
+  "rules": [
+    {
+      "name": "corp-build-token",
+      "pattern": "CORP-[0-9]{10}",
+      "description": "example: an internal build token format"
+    }
+  ],
+  "disable": ["jwt"],
+  "allow": ["EXAMPLE_[A-Z0-9]+"],
+  "entropy": {
+    "min_length": 24,
+    "threshold": 4.2
+  }
+}
